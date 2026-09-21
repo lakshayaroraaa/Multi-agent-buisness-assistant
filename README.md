@@ -116,6 +116,9 @@ scripts/
   offline_preview.py         # demo with zero Azure credentials — see below
   live_demo.py                # demo against real Azure resources
 tests/                        # 29 tests covering tools, schemas, HR privacy, and routing
+frontend/                     # React application built with Vite
+static/                       # Production build of the React app served by FastAPI
+app.py                        # FastAPI web server that hosts the UI and orchestrates agents
 requirements.txt
 .env.example
 ```
@@ -141,16 +144,23 @@ See `.env.example` for the full list of required variables
 
 ## Running it
 
-**No Azure credentials yet?** Run the offline preview — it exercises the real
-tool functions and schemas with mock data and zero Azure calls:
+**Web Application (FastAPI + React UI):**
+You can run the full web experience which includes the orchestrator agent and a modern React UI:
+```bash
+# Start the FastAPI backend
+uvicorn app:app --reload
+```
+Then navigate to `http://localhost:8000` in your browser.
 
+*(For frontend developers: The React source code lives in the `frontend/` directory. You can run `npm run dev` there for live UI development, and `npm run build` to update the production bundle served by FastAPI in the `static/` directory).*
+
+**CLI Fallbacks:**
+If you don't have Azure credentials yet, you can run an offline CLI preview:
 ```bash
 PYTHONPATH=. python scripts/offline_preview.py
 ```
 
-**Have Azure credentials configured?** Optionally index the sample knowledge
-base once, then run the live demo:
-
+Optionally, you can index the sample knowledge base once, then run the live CLI demo:
 ```bash
 python scripts/ingest_knowledge_base.py   # optional — Knowledge agent falls back to local search without this
 PYTHONPATH=. python scripts/live_demo.py
