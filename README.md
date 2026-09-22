@@ -2,7 +2,7 @@
 
 **AI-103 Group Project — Chitkara University, September 2026**
 
-**Made By:Lakshay Arora**
+**Made By:Navyam Jain , Lakshay Arora**
 
 A conversational AI assistant that answers employee questions and handles simple
 business tasks across departments — finance, sales, HR, and internal knowledge —
